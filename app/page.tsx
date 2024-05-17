@@ -1,21 +1,19 @@
-import directus from "@/lib/directus"
-import { readItems, readMe } from "@directus/sdk"
-import { getServerSession } from "next-auth"
-import  SessionProvider  from "@/components/SessionProvider";
-import AuthButton from "@/components/NavMenu";
+// import directus from "@/lib/directus"
+// import { readItems, withToken } from "@directus/sdk"
+import AuthButton from "@/components/AuthButton";
+import { TokenProvider } from "@/components/TokenProvider";
+import Globals from "@/components/globals";
 
-async function getData() {
-    return await directus.request(readMe())
-}
+
+
+
 
 export default async function HomePage() {
-    const session = await getServerSession();
-    const data = await getData()
-    console.log(session)
+    const token = TokenProvider()
     return (
-        <SessionProvider session={session}>
+        <>
+            <Globals />
             <AuthButton />
-            <h1>Dashboard</h1>
-        </SessionProvider>
+        </>
     )
 }
