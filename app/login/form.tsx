@@ -42,13 +42,6 @@ export default function LoginForm() {
         linkHref="/register"
         isFullForm={false}
       />
-      <div>
-        <Link
-          href="/request-reset-password"
-        >
-          Forgot password?
-        </Link>
-      </div>
     </>
   );
 }

@@ -2,6 +2,12 @@
 
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Cookies from "js-cookie";
+
+function handleLogout() {
+    signOut()
+    Cookies.remove('directus-token')
+}
 
 export default function AuthButton() {
     const {data: session} = useSession()
@@ -9,8 +15,7 @@ export default function AuthButton() {
     if (session) {
         return (
             <div>
-                <p>{session?.user?.accessToken}</p>
-                <button onClick={() => signOut()}>Sign Out</button>
+                <button onClick={() => handleLogout()}>Sign Out</button>
             </div>
         )
     } 
